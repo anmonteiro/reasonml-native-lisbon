@@ -1,4 +1,4 @@
-export { future as theme } from 'mdx-deck/themes';
+export { default as theme } from './theme';
 import { Head, Image, Notes, Appear } from 'mdx-deck';
 import { Split, SplitRight, Horizontal } from 'mdx-deck/layouts';
 import { Text, Ul, Heading } from './text';
@@ -44,14 +44,20 @@ import { Text, Ul, Heading } from './text';
 
 export default SplitRight;
 
+<div style={{margin: '40px'}}>
+
 ![](./img/profile_pic.png)
+
+</div>
 
 # `$ whoami`
 
-- Portuguese in California
-- Functional programming enthusiast
-- Originally Clojure(Script)
-- Recently lots of OCaml / Reason
+<Ul css={{ marginLeft: '1.5em' }}>
+  <li>Portuguese in California</li>
+  <li>Functional programming enthusiast</li>
+  <li>Originally Clojure(Script)</li>
+  <li>Recently lots of OCaml / Reason</li>
+</Ul>
 
 ---
 
@@ -265,7 +271,7 @@ installs with each dependency's build tool. I think you get the point.
 
 ## Esy
 
-- `package.json`-driven workflow
+- `package.json` driven workflow
 - Familiar `npm install -g esy`
 - Sandboxed builds
 - Global build cache
@@ -355,4 +361,4 @@ Why?
 
 - [reason-graphql-fullstack](https://github.com/anmonteiro/reason-graphql-fullstack)
 - [now-static-bin](https://github.com/anmonteiro/now-static-bin)
--
+- [Zeit Now](https://zeit.co/now)
