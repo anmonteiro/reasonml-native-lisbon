@@ -23,7 +23,7 @@ import { Text, Ul, Heading } from './text';
   src='img/reason_logo.png'
   width='25vw'
   height='25vh'
-  css={{ margin: '15px auto', backgroundSize: 'contain' }}
+  css={{ margin: '15px auto', backgroundSize: 'contain !important' }}
 />
 
 <Text>ReasonML Lisbon</Text>
@@ -248,26 +248,27 @@ installs with each dependency's build tool. I think you get the point.
 
 ## 🐫 Package Managers
 
-<Ul>
-  <li>Nothing in OCaml for a while</li>
-  <li >
-    <a style={{    color: '#0af'}}
-    href="//github.com/ocaml/opam">
-      OPAM
-      </a>
+- Nothing in OCaml for a while
+- [OPAM](https://github.com/ocaml/opam)
+- [Esy](https://esy.sh)
 
-(1st release Jul 2013)
+---
 
-  </li>
+## OPAM
 
-  <Ul css={{ fontSize: '1em' }}>
-    <li>
-      Multi-purpose, <span style={{ fontWeight: 'bold' }}>multi-target</span>
-    </li>
-  </Ul>
-</Ul>
+- 1st release Jul 2013
+- Hard to set up (anecdotal evidence)
+- Mutable global "switches"
+- Local, per-project switches in 2.0
 
-- [Esy](esy.sh) –
+---
+
+## Esy
+
+- `package.json`-driven workflow
+- Familiar `npm install -g esy`
+- Sandboxed builds
+- Global build cache
 
 ---
 
