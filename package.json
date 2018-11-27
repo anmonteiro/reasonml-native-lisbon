@@ -1,0 +1,16 @@
+{
+  "name": "reason_ocaml_native_builds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck reasonml_native.mdx",
+    "format": "prettier --parser mdx"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mdx-deck": "^1.7.14",
+    "prettier": "^1.15.2"
+  }
+}

@@ -1,0 +1,357 @@
+export { future as theme } from 'mdx-deck/themes';
+import { Head, Image, Notes, Appear } from 'mdx-deck';
+import { Split, SplitRight, Horizontal } from 'mdx-deck/layouts';
+import { Text, Ul, Heading } from './text';
+
+<Head>
+  <title>Reason Native: How to Get Started Compiling to Bare-metal</title>
+  <meta name='twitter:card' content='summary_large_image' />
+  <meta name='twitter:site' content='@_anmonteiro' />
+  <meta name='twitter:title' content='Reason Native' />
+  <meta
+    name='twitter:description'
+    content='How to Get Started Compiling to Bare-metal'
+  />
+  {/* <meta name='twitter:image' content='https://jxnblk.com/mdx-deck/card.png' /> */}
+</Head>
+
+# Reason Native
+
+## How to Get Started Compiling to Bare-metal
+
+<Image
+  src='img/reason_logo.png'
+  width='25vw'
+  height='25vh'
+  css={{ margin: '15px auto', backgroundSize: 'contain' }}
+/>
+
+<Text>ReasonML Lisbon</Text>
+<Text fontSize='26px' fontWeight='normal'>Nov. 28th 2018</Text>
+<Text fontSize='28px'>@_anmonteiro</Text>
+
+---
+
+## Follow Along
+
+<Text fontSize='1.5em' fontWeight='normal'>
+
+[reasonml-native-lisbon.now.sh](https://reasonml-native-lisbon.now.sh)
+
+</Text>
+
+---
+
+export default SplitRight;
+
+![](./img/profile_pic.png)
+
+# `$ whoami`
+
+- Portuguese in California
+- Functional programming enthusiast
+- Originally Clojure(Script)
+- Recently lots of OCaml / Reason
+
+---
+
+<Image src='img/baremetal.jpg' size='auto 70vh' />
+
+---
+
+<div style={{ display: 'flex', flexWrap: 'wrap' }}>
+  <Appear>
+    <Image
+      src='img/js.png'
+      height='46vh'
+      css={{
+        flexBasis: '46%',
+        backgroundSize: 'contain',
+        backgroundPosition: 'right',
+        marginBottom: '2%',
+        marginRight: '4%',
+      }}
+    />
+    <Image
+      src='img/java.png'
+      height='46vh'
+      css={{
+        flexBasis: '46%',
+        backgroundSize: 'contain',
+        backgroundPosition: 'left',
+        marginBottom: '2%',
+        marginLeft: '4%',
+      }}
+    />
+    <Image
+      src='img/python.png'
+      height='46vh'
+      css={{
+        flexBasis: '46%',
+        backgroundSize: 'contain',
+        backgroundPosition: 'right',
+        marginTop: '2%',
+        marginRight: '4%',
+      }}
+    />
+    <Image
+      src='img/ruby.png'
+      height='46vh'
+      css={{
+        flexBasis: '46%',
+        backgroundSize: 'contain',
+        backgroundPosition: 'left',
+        marginTop: '2%',
+        marginLeft: '4%',
+      }}
+    />
+  </Appear>
+</div>
+
+```notes
+Today most of our code runs in a VM, in one way or another. From JS to Java,
+Python or Ruby, there’s always this big trade off that our little application is
+running inside this giant runtime. I mention trade off because there often comes
+the choice between a VM with plenty of stuff baked in vs something that compiles
+to bare metal where you have to implement some things by yourself (classic
+example is memory management in C/C++). Go and Rust are probably exceptions
+here, and so is OCaml and Haskell, which make other trade offs. But, anyway,
+there’s enough content there for a whole other talk.
+```
+
+---
+
+## 🐫 Used Reason / OCaml? 🐫
+
+<Ul>
+  <Appear>
+    <li>Pragmatic, strongly typed systems language</li>
+    <li>30+ years of research & development</li>
+    <li>Safe (as in "generates correct programs")</li>
+    <li>Multi-purpose, multi-target</li>
+    <li>
+      <em>Really</em> <span style={{ fontWeight: 'bold' }}>Fast</span>
+    </li>
+  </Appear>
+</Ul>
+
+---
+
+## 🐫 Used Reason / OCaml? 🐫
+
+<Ul>
+  <li />
+  <li />
+  <li style={{ textDecoration: 'underline' }}>This Talk:</li>
+  <Ul css={{ fontSize: '1em' }}>
+    <li>
+      Multi-purpose, <span style={{ fontWeight: 'bold' }}>multi-target</span>
+    </li>
+  </Ul>
+  <li />
+</Ul>
+
+---
+
+## 🐫 **multi-target** 🐫
+
+- JavaScript (through
+  [BuckleScript](https://github.com/bucklescript/bucklescript),
+  [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml))
+- Portable OCaml Bytecode
+- Native Assembly Instructions
+- WebAssembly
+  ([upcoming](https://medium.com/@sanderspies/a-webassembly-backend-for-ocaml-b78e7eeea9d5))
+
+---
+
+## 🐫 **multi-target** 🐫
+
+<Ul>
+  <li style={{ textDecoration: 'underline' }}>This Talk:</li>
+  <Ul css={{ fontSize: '1em' }}>
+    <li>Portable OCaml Bytecode</li>
+    <li>
+      <span style={{ fontWeight: 'bold' }}>Native Assembly Instructions</span>
+    </li>
+  </Ul>
+  <li>
+    <span style={{ visibility: 'hidden' }}>
+      JavaScript (through BuckleScript, js_of_ocaml)
+    </span>
+  </li>
+</Ul>
+
+---
+
+```notes
+First we need to distinguish package management from build tooling.
+In JS these are sometimes conflated because JS doesn't need to be built out of
+the box. This is increasingly not true since JS goes through a build process
+nowadadays. So let's think of it as package management being NPM + build tooling
+being your favorite bundler.
+
+The difference here is that the package manager builds the dependencies it
+installs with each dependency's build tool. I think you get the point.
+```
+
+# Package Manager
+
+## _vs._
+
+# Build Tool
+
+---
+
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '95vw',
+    margin: '40px auto'
+  }}
+>
+  <Heading tag='h3' css={{flexBasis: '45%'}}>Package Manager</Heading>
+  ➡
+  <a href="//npmjs.com">
+    <Image
+      src='img/npm.png'
+      width='25vw'
+      height='25vh'
+      css={{ backgroundSize: 'contain' }}
+    />
+  </a>
+</div>
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '95vw',
+    margin: '40px auto'
+  }}
+>
+  <Heading tag='h3' css={{flexBasis: '45%'}}>Build System</Heading>
+  ➡
+  <a href="//parceljs.org/">
+    <Image
+      src='img/bundler.png'
+      width='25vw'
+      height='25vh'
+      css={{ backgroundSize: 'contain' }}
+    />
+  </a>
+</div>
+
+---
+
+## 🐫 Package Managers
+
+<Ul>
+  <li>Nothing in OCaml for a while</li>
+  <li >
+    <a style={{    color: '#0af'}}
+    href="//github.com/ocaml/opam">
+      OPAM
+      </a>
+
+(1st release Jul 2013)
+
+  </li>
+
+  <Ul css={{ fontSize: '1em' }}>
+    <li>
+      Multi-purpose, <span style={{ fontWeight: 'bold' }}>multi-target</span>
+    </li>
+  </Ul>
+</Ul>
+
+- [Esy](esy.sh) –
+
+---
+
+## 🐫 Build Tools
+
+- Historically crowded, not beginner-friendly
+- Makefiles, [Omake](https://github.com/ocaml-omake/omake),
+  [OCamlBuild](https://github.com/ocaml/ocamlbuild)
+- Recently [Dune](https://github.com/ocaml/dune), née `jbuilder`
+- More about Dune ahead
+
+```notes
+Landscape was historically not friendly in the land of OCaml build systems. From
+makefiles to omake to ocamlbuild to finally dune, which makes things much
+easier. Just like in a makefile, every file can become a target (e.g just build
+type information, vs build a bye ode or native exe)
+```
+
+---
+
+## Honorable Mention
+
+- [**Bsb-native**](https://github.com/bsansouci/bucklescript)
+  (**B**uckle**S**cript **B**uild **Native**)
+- Fork of BuckleScript
+- `bsconfig.json`-based workflow for native builds
+- Still WIP, can build simple projects
+
+---
+
+## In Our Example
+
+<br/>
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '95vw',
+    margin: '25px auto'
+  }}
+>
+  <Heading tag='h3' css={{flexBasis: '45%'}}>Package Manager</Heading>
+  ➡
+  <Image
+    src='img/esy_vertical.png'
+    width='15vw'
+    height='25vh'
+    css={{ backgroundSize: 'contain' }}
+  />
+</div>
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '95vw',
+    margin: '25px auto'
+  }}
+>
+  <Heading tag='h3' css={{flexBasis: '45%'}}>Build System</Heading>
+  ➡
+  <Image
+    src='img/dune.png'
+    width='15vw'
+    height='25vh'
+    css={{ backgroundSize: 'contain' }}
+  />
+</div>
+
+```notes
+Why?
+```
+
+---
+
+# Demo
+
+<sub>(May the demo gods be ever in our favor)</sub>
+
+---
+
+## Thanks (and some links)!
+
+- [reason-graphql-fullstack](https://github.com/anmonteiro/reason-graphql-fullstack)
+- [now-static-bin](https://github.com/anmonteiro/now-static-bin)
+-

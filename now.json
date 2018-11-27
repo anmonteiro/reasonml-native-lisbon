@@ -1,0 +1,15 @@
+{
+  "name": "reasonml-native-lisbon",
+  "alias": "reasonml-native-lisbon",
+  "version": 2,
+  "builds": [
+    {
+      "src": "reasonml_native.mdx",
+      "use": "@now/mdx-deck"
+    },
+    {
+      "src": "img/*",
+      "use": "@now/static"
+    }
+  ]
+}
