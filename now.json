@@ -5,7 +5,7 @@
   "builds": [
     {
       "src": "reasonml_native.mdx",
-      "use": "@now/mdx-deck"
+      "use": "@now/mdx-deck@canary"
     },
     {
       "src": "img/*",
