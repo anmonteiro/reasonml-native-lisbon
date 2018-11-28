@@ -4,6 +4,16 @@ export const Ul = ({ children, css }) => (
   <ul style={{ fontSize: '1.5em', textAlign: 'left', ...css }}>{children}</ul>
 );
 
+export const Ol = ({ children, css }) => (
+  <ol style={{ fontSize: '1.5em', textAlign: 'left', ...css }}>{children}</ol>
+);
+
+export const Code = ({ children }) => (
+  <code style={{ fontFamily: 'Menlo,monospace', color: '#0af' }}>
+    {children}
+  </code>
+);
+
 export const Text = ({ children, ...props }) => (
   <div style={{ fontSize: '32px', fontWeight: 'bold', ...props }}>
     {children}

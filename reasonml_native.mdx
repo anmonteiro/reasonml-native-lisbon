@@ -1,7 +1,7 @@
 export { default as theme } from './theme';
 import { Head, Image, Notes, Appear } from 'mdx-deck';
 import { Split, SplitRight, Horizontal } from 'mdx-deck/layouts';
-import { Text, Ul, Heading } from './text';
+import { Code, Text, Ol, Ul, Heading } from './text';
 
 <Head>
   <title>Reason Native: How to Get Started Compiling to Bare-metal</title>
@@ -354,6 +354,32 @@ Why?
 # Demo
 
 <sub>(May the demo gods be ever in our favor)</sub>
+
+---
+
+## Recap
+
+<Ol>
+  <li>
+    From zero ➡ <Code>Hello, World!</Code>{' '}
+  </li>
+  <Ul css={{ fontSize: '1em' }}>
+    <li>In just a few steps</li>
+  </Ul>
+  <li>
+    From <Code>Hello, World!</Code> ➡ simple webserver
+  </li>
+  <li>Static binary, deployed to the cloud</li>
+  <Ul css={{ fontSize: '1em' }}>
+    <li>Infinitely scalable out of the box</li>
+  </Ul>
+</Ol>
+
+```notes "In just a few steps": it would have been impossible to bootstrap an
+OCaml / Reason in so few steps just a few months ago. This speaks to the
+investment in community and tooling (both on the esy and Dune front) that's been
+happening recently. I, for one, I'm really excited about the possibilities.
+```
 
 ---
 
